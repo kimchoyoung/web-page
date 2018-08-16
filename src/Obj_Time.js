@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import request from 'superagent'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import { Table } from 'semantic-ui-react'
 
 
 class ObjTime extends Component {
@@ -27,20 +28,28 @@ class ObjTime extends Component {
 
     render(){
         const itemsHtml= this.state.items.map(e=>(
-            <tr>
-                <Link to={'/EditForm/'+e.obj_id}><td>{e.name}</td></Link>
-                <td> {e.start_time}</td>
-                <td> {e.end_time}</td>
-            </tr>
+            <Table.Row>
+                <Link to={'/EditForm/'+e.obj_id}><Table.Cell>{e.name}</Table.Cell></Link>
+                <Table.Cell> {e.start_time}</Table.Cell>
+                <Table.Cell> {e.end_time}</Table.Cell>
+            </Table.Row>
         ))
         return (
             <div>
-                <table>
-                    <thead><h1 style={styles.h1}> <tr><td colSpan="2"> 기기별 예약시간 </td></tr></h1></thead>
-                    <tbody><tr><td>Object</td><td>Start</td><td>End</td></tr>
+                <h1 style={styles.h1}> 기기별 예약시간 </h1>
+                <Table striped>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Object</Table.HeaderCell>
+                            <Table.HeaderCell>Start</Table.HeaderCell>
+                            <Table.HeaderCell>End</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+
+                    <Table.Body>
                     {itemsHtml}
-                    </tbody>
-                </table>
+                    </Table.Body>
+                </Table>
             </div>
         )
 
@@ -48,7 +57,7 @@ class ObjTime extends Component {
 }
 const styles={
     h1: {
-        color: 'blue',
+        color: 'black',
         fontSize: 24,
         padding:12
     }

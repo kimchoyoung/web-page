@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import 'semantic-ui-css/semantic.min.css';
+
+
 import Monitoring from "./Monitoring";
 import App from "./App"
-
-import {BrowserRouter as Router, Route} from 'react-router-dom'
 import ObjTime from "./Obj_Time";
 import EditForm from "./EditForm";
 import Consumption from "./Consumption"
 import calendar from "./calendar"
+
 
 
 

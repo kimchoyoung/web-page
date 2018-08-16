@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import request from 'superagent'
+import { Table } from 'semantic-ui-react'
+
 
 class Monitoring extends Component{
     constructor(props){
@@ -33,23 +35,33 @@ class Monitoring extends Component{
 
     render(){
         const itemsHtml= this.state.items.map(e=>(
-            <tr>
-                <td> {e.name}</td>
-                <td> {e.start_time}</td>
-                <td> {e.end_time}</td>
-                <td> <button onClick={e=> this.OnOffChange(e)}> {this.state.OnOff} </button></td>
-            </tr>
+            <Table.Row>
+                <Table.Cell> {e.name} </Table.Cell>
+                <Table.Cell> {e.start_time}</Table.Cell>
+                <Table.Cell> {e.end_time}</Table.Cell>
+                <Table.Cell> <button onClick={e=> this.OnOffChange(e)}> {this.state.OnOff} </button></Table.Cell>
+            </Table.Row>
         ))
         return (
             <div>
-                <table>
-                    <tr><td colSpan="2"> 현재 동작되는 기기들</td></tr><br />
-                    <tr><td> Object </td><td> Start </td><td> End </td></tr>
-                    {itemsHtml}
-                </table>
+                <tr><td colSpan="2"><h2> 현재 동작되는 기기들</h2></td></tr><br />
+                <Table striped>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Object</Table.HeaderCell>
+                            <Table.HeaderCell>Start</Table.HeaderCell>
+                            <Table.HeaderCell>End</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+
+                    <Table.Body>
+                        {itemsHtml}
+                    </Table.Body>
+                </Table>
             </div>
         )
     }
 }
 
 export default Monitoring
+

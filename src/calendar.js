@@ -1,8 +1,9 @@
 import Calendar from 'react-calendar'
 import React, {Component} from 'react'
 import request from 'superagent'
-import Consumption from './Consumption'
 import { Link } from 'react-router-dom'
+import { Button } from 'semantic-ui-react'
+
 
 let now= new Date()
 
@@ -50,7 +51,9 @@ class calendar extends Component{
                     selectRange={this.state.selectRange}
                     value={this.state.value}
                 />
-                <Link to={'/Consumption'}><button onClick={e=> this.Post(e)}> 조회 </button></Link>
+                <Link to={'/Consumption'}>
+                        <Button color='teal' onClick={e=> this.Post(e)} attached='right'> 조회 </Button>
+                </Link>
             </div>
         )
     }

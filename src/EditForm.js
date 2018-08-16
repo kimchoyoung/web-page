@@ -1,5 +1,7 @@
 import React from 'react'
 import request from 'superagent'
+import { Button, Form, Input} from 'semantic-ui-react'
+
 
 class EditForm extends React.Component{
     constructor (props){
@@ -27,6 +29,8 @@ class EditForm extends React.Component{
     }
 
     post(e){
+
+        console.log(this.state.start, this.state.end)
         request
             .get('http://localhost:3001/api/write')
             .query({
@@ -40,23 +44,27 @@ class EditForm extends React.Component{
                 if(this.props.onPost){
                     this.props.onPost()
                 }
+                alert(this.state.start +"~"+ this.state.end +': 수정 완료')
             })
     }
 
     render() {
-
         return (
             <div>
-                Object ID: <br />
-                <input type='text' value={this.state.obj}
-                       onChange={e=> this.nameChanged(e)} /><br />
-                Start Time: <br />
-                <input type='text' value={this.state.start} size='60'
-                       onChange={e=>this.startChanged(e) } /> <br />
-                END Time: <br />
-                <input type='text' value={this.state.end} size='60'
-                       onChange={e=>this.endChanged(e) } /> <br />
-                <button onClick={e=> this.post()} > 수정 </button>
+                <h1> Edit Form </h1>
+                <Form size='mini'>
+                    Object ID: <br />
+                    <Input focus placeholder={this.state.obj} onChange={e=> this.nameChanged(e)}/><br />
+                        Start Time: <br />
+                    <Input focus placeholder={this.state.start} type='time' onChange={e=>this.startChanged(e)}/><br />
+                        END Time: <br />
+                    <Input focus placeholder={this.state.end} type='time' onChange={e=>this.endChanged(e)}/><br /><br />
+                        <Button.Group>
+                            <Button> Cancel </Button>
+                            <Button.Or />
+                            <Button positive onClick={e=> this.post()} > Save </Button>
+                        </Button.Group>
+                </Form>
             </div>
         )
     }

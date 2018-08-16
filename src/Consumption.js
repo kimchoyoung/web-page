@@ -20,16 +20,11 @@ class Consumption extends React.Component{
         console.log(data)
     }
 
-    componentDidMount() {
-        window.onresize = () => {
-            this.setState({width: this.refs.root.offsetWidth});
-        }
-    }
 
     render() {
         return (
                 <div style={{width: '50%'}}>
-                    <BarChart ylabel='Quantity'
+                    <BarChart ylabel='Consumption'
                               width={600}
                               height={500}
                               margin={margin}
